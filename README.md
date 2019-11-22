@@ -93,4 +93,12 @@ Persist data from JavaScript in the client is handled in a couple of different w
 2. Local Storage Service - Write your own JavaScript code to do so and then use it with the services pattern, leveraging Angular's dependency injection to work with it throughout your application. 
 3. Data Store Service - One way you can persist data to and from an API is by leveraging the HTTP protocol. You can do this in two ways. One, by using the XML HTTP request, or XHR, and the other by using JSONP. Angular provides an HTTP module in the framework for abstracting out working with the way XHR and JSONP calls are done via client script.  
 
+### Routing
+Angular provides a router module that handles routing on the client and adjusts the UI and data displayed accordingly.
+This Router Module supports:  
+- Route configuration to components, route params to have variables in the URL; 
+- Routing links - a directive for working with links that do routing;
+- Router outlets - a dircetive for specifying where in a template the routed component will display, creating child routes;
+- Routing events - rougting lifecycle hooks for responding routing events;
+- It also handles history state, altering the way a browser handles it by default, so that back and forward actions by the user will result in Angular route changes.
 
