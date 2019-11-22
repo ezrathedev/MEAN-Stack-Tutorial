@@ -1,9 +1,9 @@
-# MEAN STACK
-*Building a media watch list application*  
-## ANGULAR
 
+ 
+## ANGULAR
+*Building a media watch list application* 
 - Parts that you use to write applications in Angular:
-![ANGULAR components](/images/angular1.png)  
+![ANGULAR components](./images/angular1.png)  
 - Angular is built upon ***components***. 
 - The starting point of an Angular app is the bootstrapping(like the HTML DOM tree) - Angular runs on a component tree model. 
 - After Angular loads the first component with the bootstrap call, it then looks within that component's HTML view and sees if it has any nested components. 
