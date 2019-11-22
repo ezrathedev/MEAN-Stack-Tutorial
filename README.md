@@ -61,8 +61,8 @@ This allows you to wire up simple interactions or display related data from with
   - error handling  
 
 ### Dependency injection
-- Angular brings dependency injection to JavaScript. 
-- ***Dependency injection (DI)***is the concept of *inversion of control (IoC)*, where you architect code in a way that you provide modules with other modules it needs to get some work done.
+- Angular brings dependency injection to JavaScript.  
+- ***Dependency injection (DI)*** is the concept of *inversion of control (IoC)*, where you architect code in a way that you provide modules with other modules it needs to get some work done.
 - DI allows you to write decoupled code that is easier to unit test and to work with. 
 ![ANGULAR components img 2](/images/angular8.png)  
 - You can write modular components, and services and tell Angular what/where you want to use them. 
@@ -79,10 +79,18 @@ This allows you to wire up simple interactions or display related data from with
 - You can even do some DI at the bootstrap phase of an Angular app, setting up your dependency graph when your app starts up, and getting that delivered through all aspects of your app. 
 - You can replace a dependency at any phase of application code.  
 
-### Services and other business logic
+### Services and other Business Logic
 - *Services in Angular are more of an implied pattern*. A JavaScript class or function that is encapsulated is refered to as a service in Angular. 
 - Put application business logic in services.  
 ***Example:***  
 You can write a JavaScript class that handles finding the record data and returning it as an object. This would be a service. And then, using Angular's DI framework, you can specify that a component is going to use this service. And from within the component logic, you can request the a data record from your service and make it available to your view template.  
 - These services that you write can also leverage DI, so you can create constructors and specify parameter types, with the help of some TypeScript, and Angular will provide your service instance with the appropriate dependencies.  
+
+### Data Persistence
+Persist data from JavaScript in the client is handled in a couple of different ways with Angular
+1. In-Memory Data Store - storing data for the time in which the user is using your application, you could store that data in memory. 
+   Create a JavaScript class or object to store your data, provide it to your app as something that can be injected in, and then do constructor injection where needed to bring in the instance of that object. 
+2. Local Storage Service - Write your own JavaScript code to do so and then use it with the services pattern, leveraging Angular's dependency injection to work with it throughout your application. 
+3. Data Store Service - One way you can persist data to and from an API is by leveraging the HTTP protocol. You can do this in two ways. One, by using the XML HTTP request, or XHR, and the other by using JSONP. Angular provides an HTTP module in the framework for abstracting out working with the way XHR and JSONP calls are done via client script.  
+
 
