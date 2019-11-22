@@ -38,7 +38,7 @@ You can also write your own pipes.
 *Pipes are a great way to change data in a reusable way without having to imbed the transformed logic within component classes. And without having to modify the data just for display purposes*.  
 ### Data Binding
 - You can bind data to views and work with data in those views via ***interpolation***, - ```<h1>{{ movie.title}}</h1>```.  
-- You can also use directives to help display data. Use the template syntax in Angular to work with data in views.  
+- You can also use directives to help display data. Use the ***template syntax*** in Angular to work with data in views.  
 You can wire up click events to DOM elements that modify data that you've displayed elsewhere and Angular will handle the update of that data visually.  
 
 There are many elements to the template syntax. 
@@ -47,8 +47,42 @@ There are many elements to the template syntax.
   - Template expressions and statements
   - Value binding - binding syntax for property, attribute, class, and style bindings
   - Event binding
-  - Template expression operators. 
-You can also create and use local template variables created in markup using the hash to get a reference to the element and then use that from any sibling or child element in the view. 
+  - Template expression operators.  
+
+You can also create and use local template variables created in markup using the hash to get a reference to the element and then use that from any sibling or child element in the view.  
+
 This allows you to wire up simple interactions or display related data from within your markup without needing to write any script code.  
 ![ANGULAR components img 2](/images/angular7.png)  
-- Now when it comes to collecting data from the user, Angular has a form module loaded with directives and services for helping you build HTML forms. It provides things like data binding for both setting and getting data, change tracking, validation, and error handling.
+- Now when it comes to collecting data from the user, Angular has a form module loaded with directives and services for helping you build HTML forms.  
+  It provides:
+  - data binding for both setting and getting data
+  - change tracking
+  - validation
+  - error handling  
+
+### Dependency injection
+- Angular brings dependency injection to JavaScript. 
+- ***Dependency injection (DI)***is the concept of *inversion of control (IoC)*, where you architect code in a way that you provide modules with other modules it needs to get some work done.
+- DI allows you to write decoupled code that is easier to unit test and to work with. 
+![ANGULAR components img 2](/images/angular8.png)  
+- You can write modular components, and services and tell Angular what/where you want to use them. 
+![ANGULAR components img 2](/images/angular9.png)  
+- The most common place you use DI is in your class constructors.  
+  - components
+  - directives
+  - pipes
+  - services
+- You can declare types on your constructor parameters with TypeScript.
+- You can also leverage DI through 
+  - component metadata,
+  - properties, for directives and providers. 
+- You can even do some DI at the bootstrap phase of an Angular app, setting up your dependency graph when your app starts up, and getting that delivered through all aspects of your app. 
+- You can replace a dependency at any phase of application code.  
+
+### Services and other business logic
+- *Services in Angular are more of an implied pattern*. A JavaScript class or function that is encapsulated is refered to as a service in Angular. 
+- Put application business logic in services.  
+***Example:***  
+You can write a JavaScript class that handles finding the record data and returning it as an object. This would be a service. And then, using Angular's DI framework, you can specify that a component is going to use this service. And from within the component logic, you can request the a data record from your service and make it available to your view template.  
+- These services that you write can also leverage DI, so you can create constructors and specify parameter types, with the help of some TypeScript, and Angular will provide your service instance with the appropriate dependencies.  
+
