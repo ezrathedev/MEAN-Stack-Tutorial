@@ -165,23 +165,56 @@ The W3C spec states that custom DOM elements should use at least one dash in the
   - Template - we can use back ticks around the inline template value and use multiple lines for better readability;  
   ```JavaScript
   @Component({
-  selector: "app-root",
-  template: `
-    <h1>MyApp</h1>
-    <p>Keeping track of the media I want to watch.</p>
-  `
+    selector: "app-root",
+    template: `
+      <h1>MyApp</h1>
+      <p>Keeping track of the media I want to watch.</p>
+    `
   })
   ```  
   - Template URL - specify a file that contains the template content. And one thing to note here is that the relative path can be used here because the bill process set up by the Angular CLI will handle resolving that path for us.  
   ```JavaScript
   @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html"
+    selector: "app-root",
+    templateUrl: "./app.component.html"
   })
   ```  
 <br/>
 
 ### Styling a Component
+- Angular provides support for styling a component via the component metadata in two ways, both take an array of string values;
+  - Styles property - add the styles property to the object literal we are passing into our component decorator;  
+  ```JavaScript
+  @Component({
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styles: [
+    `
+      h1 {
+        color: #ffffff;
+      }
+    `,
+    `
+      .description {
+        font-style: italic;
+        color: green;
+      }
+    `
+    ]
+  })
+  ```  
+  - StyleUrls property - , point to a file that contains the style contentNow
+  ```JavaScript
+  @Component({
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styleUrls: ["./app.component.css"]
+  })
+  ```  
+*Note:*  
+Feature that Angular does with the styles: Angular is actually shimming the style content and converting it into new selectors, then injecting it into the dom in the head tag. If we look at the source of the web app in the browser, we can see that we have a style tag in our head element, and if we look at the contents of that tag, we can find the style rules shimmed a bit. When Angular renders our components, it adds these dynamic ID attributes to the component tags and all of its children, and then uses those dynamic IDs to write new CSS rules that scope the CSS to the component element, putting these in style tags in the head tab for each component render.  
+<br/> 
+
 
 
 ## DIRECTIVES and PIPES
