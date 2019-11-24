@@ -162,7 +162,7 @@ The W3C spec states that custom DOM elements should use at least one dash in the
 ### The Component Template
 - When Angular finds a match in the DOM for a component selector, it will render the component markup into that DOM that it found the match on.
 - There are two options for this; 
-  - Template - we can use back ticks around the inline template value and use multiple lines for better readability;
+  - Template - we can use back ticks around the inline template value and use multiple lines for better readability;  
   ```JavaScript
   @Component({
   selector: "app-root",
@@ -170,14 +170,14 @@ The W3C spec states that custom DOM elements should use at least one dash in the
     <h1>MyApp</h1>
     <p>Keeping track of the media I want to watch.</p>
   `
-})
+  })
   ```  
-  - Template URL - specify a file that contains the template content. And one thing to note here is that the relative path can be used here because the bill process set up by the Angular CLI will handle resolving that path for us. 
+  - Template URL - specify a file that contains the template content. And one thing to note here is that the relative path can be used here because the bill process set up by the Angular CLI will handle resolving that path for us.  
   ```JavaScript
   @Component({
   selector: "app-root",
   templateUrl: "./app.component.html"
-})
+  })
   ```  
 <br/>
 
