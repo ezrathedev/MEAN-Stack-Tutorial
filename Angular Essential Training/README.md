@@ -215,7 +215,7 @@ The W3C spec states that custom DOM elements should use at least one dash in the
 Feature that Angular does with the styles: Angular is actually shimming the style content and converting it into new selectors, then injecting it into the dom in the head tag. If we look at the source of the web app in the browser, we can see that we have a style tag in our head element, and if we look at the contents of that tag, we can find the style rules shimmed a bit. When Angular renders our components, it adds these dynamic ID attributes to the component tags and all of its children, and then uses those dynamic IDs to write new CSS rules that scope the CSS to the component element, putting these in style tags in the head tab for each component render.  
 <br/> 
 
-### Using other components in a component
+### Using Other Components in a Component
 - While an Angular app could be made up of only a single component if the app was small, most likely it will be a composition of mini components. 
 - Components is really a directives with a view, and the Angular platform is full of built-in directives that it makes available to your app. 
 - Make your components available to your app.
@@ -242,7 +242,27 @@ import { Component } from '@angular/core';    -> import and component decorator
 })
 export class MediaItemComponent {}            -> component class
 ```  
-2.  Add this component to the app module, so it knows it is for use for other templates - add it to the declaration metadata property; first import it.  
+- Content that displays the media item  
+***media-item-component.html -***  
+```JavaScript
+<h2>The Redemption</h2>
+<div>Watched on 1/13/2016</div>
+<div>Action</div>
+<div>2016</div>
+<div class="tools">
+  <svg class="favorite" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M12 9.229c.234-1.12 1.547-6.229 5.382-6.229 2.22 0 4.618 1.551 4.618 5.003 0 3.907-3.627 8.47-10 12.629-6.373-4.159-10-8.722-10-12.629 0-3.484 2.369-5.005 4.577-5.005 3.923 0 5.145 5.126 5.423 6.231zm-12-1.226c0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-7.962-9.648-9.028-12-3.737-2.338-5.262-12-4.27-12 3.737z"
+    />
+  </svg>
+  <a class="delete">
+    remove
+  </a>
+  <a class="details">
+    watch
+  </a>
+</div>
+```
+2.  Add this component to the app module, so it knows it is for use for other templates - add it to the declaration metadata property; first add the import statement.  
 ```JavaScript
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
@@ -256,11 +276,70 @@ import { MediaItemComponent } from "./media-item.component";
 })
 export class AppModule {}
 ```  
-3. Switch over to the app.component.html and add an DOM element
+3. Switch over to the app.component.html and add an DOM element ```<mw-media-item>```  
+***app.component.html***  
 ```HTML
-<mw-media-item></mw-media-item>
-```
- This thing will be used to display the details of a media item and we want to use it from within the app component. If we take a look at this new file, we can see the import and component decorator, along with the component metadata object literal we have learned about to this point, and of course, the component class below that. This component also has a template file named media-item.component.html that has some sample content to display a media item. Let's get this added to the app module, so it knows it is available for use in other templates. Over in the app.module.ts file, where we have the app module class, we want to add the new media item component to the declaration's metadata property. So let's first add the import statement for that. Then we can add the media item component to the declaration's array. Now we can switch over to the app component html, and add a DOM element named mw-media-item inside of the section element after its header element. And one thing to note here we need to add the opening and closing tags for these custom elements. They cannot be self-closing. If we head over to the browser, we can see that the media item component is rendering, and if we inspect the source for the DOM, we can see that the media item component template mark up has been rendered inside of the mw-media-item element. Now Angular is going to find all instances of elements that match the selector and process them. So if we head back to the app component html, and add a few more mw-media-item elements, then switch back to the browser, we can see that Angluar did its thing, and they were all componentized. Okay let's go back to the app.component.html file, and do a little clean up. We'll remove the extra mw-media-item elements out of here, so we'll only have one going forward.
+<section>
+  <header>
+    <h1>Media Watch List</h1>
+    <p class="description">Keeping track of the media I want to watch.</p>
+  </header>
+  <mw-media-item></mw-media-item>
+</section>
+```  
+<br/> 
+
+### Interpolation and the expression context
+Different ways Angular allows us to mark up our template.
+Angular Template Syntax is made of
+- Interpolation
+- Binding, 
+- Expressions,
+- Conditional templating,
+- Template variables,
+- Template expression operators
+<br/>
+
+***Interpolation*** is a way to get data displayed in the view. 
+ You do interpolation by using a pair of curly braces in the markup.  
+ *Example:*  
+ ```JavaScript
+ <h2>The Redemption {{ 5+ 10 }}</h2>   => The Redemption 15 (in browser)
+ ```
+But not all expressions are supported. 
+- Assignments, 
+- Newing up variables, 
+- Expressions that are chained, 
+- Incrementors and decrementors are not valid expressions.
+
+
+ The most common use of interpolation is to display some data from a property that we have set in the component class.  
+ *Example:*  
+ Switch over to the media-item-component.ts file, and add a class property named name, and assign it a string value of the redemption.  
+```JavaScript
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "mw-media-item",
+  templateUrl: "./media-item.component.html",
+  styleUrls: ["./media-item.component.css"]
+})
+export class MediaItemComponent {
+  name = "The Redemption";
+}
+```  
+Flip back over to the template file media-item.component.html. And put name in our curly braces in place of the test expression.  
+```JavaScript
+<h2>{{ name }}</h2>
+``` Notice that we use the property name directly in the interpolation statement without any this dot reference, or some other component instance reference. 
+This component property is made available via what is know as the ***expression context***. Methods on the component class are also available in the expression context.  
+<br/>
+
+### Property Binding
+Another way you can bind data in templates with Angular is through property binding. 
+
+
+
 
 ## DIRECTIVES and PIPES
 
