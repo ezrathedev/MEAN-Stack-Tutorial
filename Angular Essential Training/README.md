@@ -215,7 +215,52 @@ The W3C spec states that custom DOM elements should use at least one dash in the
 Feature that Angular does with the styles: Angular is actually shimming the style content and converting it into new selectors, then injecting it into the dom in the head tag. If we look at the source of the web app in the browser, we can see that we have a style tag in our head element, and if we look at the contents of that tag, we can find the style rules shimmed a bit. When Angular renders our components, it adds these dynamic ID attributes to the component tags and all of its children, and then uses those dynamic IDs to write new CSS rules that scope the CSS to the component element, putting these in style tags in the head tab for each component render.  
 <br/> 
 
+### Using other components in a component
+- While an Angular app could be made up of only a single component if the app was small, most likely it will be a composition of mini components. 
+- Components is really a directives with a view, and the Angular platform is full of built-in directives that it makes available to your app. 
+- Make your components available to your app.
+1. We have a new component - media-item.component.ts - this will be used to display the details of a media item. We will be using it from within the app.component.ts  
+***app.component.ts -***  
+```JavaScript  
+import { Component } from '@angular/core';
 
+@Component({
+  selector: 'mw-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {}
+```  
+***media-item-component.ts -***  
+```JavaScript
+import { Component } from '@angular/core';    -> import and component decorator
+
+@Component({
+  selector: 'mw-media-item',                  -> component metadata object literal
+  templateUrl: './media-item.component.html', -> content to display media item
+  styleUrls: ['./media-item.component.css']
+})
+export class MediaItemComponent {}            -> component class
+```  
+2.  Add this component to the app module, so it knows it is for use for other templates - add it to the declaration metadata property; first import it.  
+```JavaScript
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppComponent } from "./app.component";
+import { MediaItemComponent } from "./media-item.component";
+
+@NgModule({
+  imports: [BrowserModule],
+  declarations: [AppComponent, MediaItemComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```  
+3. Switch over to the app.component.html and add an DOM element
+```HTML
+<mw-media-item></mw-media-item>
+```
+ This thing will be used to display the details of a media item and we want to use it from within the app component. If we take a look at this new file, we can see the import and component decorator, along with the component metadata object literal we have learned about to this point, and of course, the component class below that. This component also has a template file named media-item.component.html that has some sample content to display a media item. Let's get this added to the app module, so it knows it is available for use in other templates. Over in the app.module.ts file, where we have the app module class, we want to add the new media item component to the declaration's metadata property. So let's first add the import statement for that. Then we can add the media item component to the declaration's array. Now we can switch over to the app component html, and add a DOM element named mw-media-item inside of the section element after its header element. And one thing to note here we need to add the opening and closing tags for these custom elements. They cannot be self-closing. If we head over to the browser, we can see that the media item component is rendering, and if we inspect the source for the DOM, we can see that the media item component template mark up has been rendered inside of the mw-media-item element. Now Angular is going to find all instances of elements that match the selector and process them. So if we head back to the app component html, and add a few more mw-media-item elements, then switch back to the browser, we can see that Angluar did its thing, and they were all componentized. Okay let's go back to the app.component.html file, and do a little clean up. We'll remove the extra mw-media-item elements out of here, so we'll only have one going forward.
 
 ## DIRECTIVES and PIPES
 
