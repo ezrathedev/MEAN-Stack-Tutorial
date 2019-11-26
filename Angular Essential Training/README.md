@@ -331,14 +331,25 @@ export class MediaItemComponent {
 Flip back over to the template file media-item.component.html. And put name in our curly braces in place of the test expression.  
 ```JavaScript
 <h2>{{ name }}</h2>
-``` Notice that we use the property name directly in the interpolation statement without any this dot reference, or some other component instance reference. 
+```  
+Notice that we use the property name directly in the interpolation statement without any this dot reference, or some other component instance reference. 
 This component property is made available via what is know as the ***expression context***. Methods on the component class are also available in the expression context.  
 <br/>
 
 ### Property Binding
-Another way you can bind data in templates with Angular is through property binding. 
-
-
+Another way you can bind data in templates with Angular is through property binding.  
+<br/>  
+HTML elements have backing dom properties that track state on elements. You can use Angular's property binding syntax to wire into those properties.  
+```JavaScript
+<h2 [textContent]="name"></h2>
+```  
+Using the property binding syntax of the square brackets, tells Angular that you want it to evaluate an expression for that property.  
+<br/>    
+If we leave off the brackets and put the interpolation curly braces around the property name, then back in the browser we can see that Angular will process it.  
+```JavaScript
+<h2 textContent="{{ name }}"></h2>
+```  
+So we can do property binding either way.  
 
 
 ## DIRECTIVES and PIPES
