@@ -337,20 +337,37 @@ This component property is made available via what is know as the ***expression 
 <br/>
 
 ### Property Binding
-Another way you can bind data in templates with Angular is through property binding.  
-<br/>  
+Another way you can bind data in templates with Angular is through property binding. 
 HTML elements have backing dom properties that track state on elements. You can use Angular's property binding syntax to wire into those properties.  
 ```JavaScript
 <h2 [textContent]="name"></h2>
 ```  
 Using the property binding syntax of the square brackets, tells Angular that you want it to evaluate an expression for that property.  
-<br/>    
+ 
 If we leave off the brackets and put the interpolation curly braces around the property name, then back in the browser we can see that Angular will process it.  
 ```JavaScript
 <h2 textContent="{{ name }}"></h2>
 ```  
 So we can do property binding either way.  
+<br/>
 
+### Event Binding
+- The EventBinding template syntax in Angular allows you to wire up event handlers from within your component templates. 
+- You can wire up native dom element events, as well as custom events you create for your components to emit. 
+- On the a tag element for the delete, we can add the event named click, wrapped with parentheses, and set it equal to a statement in quotes that will be evaluated. 
+```JavaScript
+  <a (click)="onDelete()" class="delete">remove</a>
+```
+- Switch to the media-item.component.ts file, and add an onDelete method. 
+```JavaScript
+export class MediaItemComponent {
+  onDelete() {
+    console.log('deleted');
+  }
+}
+```
+ 
+ 
 
 ## DIRECTIVES and PIPES
 
