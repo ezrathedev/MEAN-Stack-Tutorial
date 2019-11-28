@@ -3,7 +3,7 @@
 _Building a media watch list application_
 
 - Parts that you use to write applications in Angular:
-  ![ANGULAR components](/images/angular1.png)
+  ![ANGULAR components](images/angular1.png)
 
 ## COMPONENTS
 
@@ -11,14 +11,14 @@ _Building a media watch list application_
 - The starting point of an Angular app is the bootstrapping(like the HTML DOM tree) - Angular runs on a component tree model.
 - After Angular loads the first component with the bootstrap call, it then looks within that component's HTML view and sees if it has any nested components.
 - If so, Angular finds matches and runs the appropriate component code on those. This repeats for each component down the tree.
-  ![ANGULAR components img 2](/images/angular2.png)
+  ![ANGULAR components img 2](images/angular2.png)
 - _A component in Angular is used to render a portion of HTML and provide functionality to that portion_.
 - It does this through a **_Component class_** in which you can define application logic for the component.
 - For example, you can have a MediaItemComponent that can have a property named mediaItem that represents the data for a mediaItem.  
    And that component can also have a method called onDeleteClick that can handle raising the delete mediaItem event.  
    With each component in Angular, you can **_specify an HTML template_**, the markup that will get rendered. And through the use of the Component class and how Angular renders the component, you can display the data for the mediaItem property in your template.  
    And Angular provides an easy syntax, known as the **_template syntax_**, to wire up to DOM events within your template. So you can wire up the click event on a button to the onDeleteClick method.  
-  ![ANGULAR components img 2](/images/angular3.png)
+  ![ANGULAR components img 2](images/angular3.png)
 
 - You can even use **_components within components_**. This is where the component tree comes into play. You can build out your Angular apps by having components rendering components within their templates.
 - Each component gets configured with a **_selector_**, which tells Angular what markup element tag to associate the Component class logic with. _When you build a component in Angular, you are creating support for a new custom element for the DOM_.
@@ -378,11 +378,11 @@ Components are actually directives with a template. _Directives provide function
 - Structural Directives - modify layout by altering elements in the DOM.
 - Attribute directives - change the behavior or appearance of an existing DOM element.  
   You can applying directives to an existing element, or a template element, to change that element in some way.  
-  ![ANGULAR components img 2](/images/angular5.png)  
+  ![ANGULAR components img 2](images/angular5.png)  
   Like a component, a directive gets configured with a selector that Angular will use to find a match and apply the directive.  
   You apply a directive in different ways. You can write an attribute on an element that matches your selector,  
   or you can use the template syntax to add a directive and an assignment statement.  
-  ![ANGULAR components img 2](/images/angular6.png)  
+  ![ANGULAR components img 2](images/angular6.png)  
   In addition to creating your own directives Angular comes with a number of directives out of the box to handle common web app constructs by conditionally rendering elements based on some expression1(`ngIf`), looping out items to render(`ngFor`), or even for things like router links (`routerLink`).
 
 #### Pipe
@@ -410,7 +410,7 @@ There are many elements to the template syntax.
 You can also create and use local template variables created in markup using the hash to get a reference to the element and then use that from any sibling or child element in the view.
 
 This allows you to wire up simple interactions or display related data from within your markup without needing to write any script code.  
-![ANGULAR components img 2](/images/angular7.png)
+![ANGULAR components img 2](images/angular7.png)
 
 - Now when it comes to collecting data from the user, Angular has a form module loaded with directives and services for helping you build HTML forms.  
   It provides:
@@ -424,9 +424,9 @@ This allows you to wire up simple interactions or display related data from with
 - Angular brings dependency injection to JavaScript.
 - **_Dependency injection (DI)_** is the concept of _inversion of control (IoC)_, where you architect code in a way that you provide modules with other modules it needs to get some work done.
 - DI allows you to write decoupled code that is easier to unit test and to work with.
-  ![ANGULAR components img 2](/images/angular8.png)
+  ![ANGULAR components img 2](images/angular8.png)
 - You can write modular components, and services and tell Angular what/where you want to use them.
-  ![ANGULAR components img 2](/images/angular9.png)
+  ![ANGULAR components img 2](images/angular9.png)
 - The most common place you use DI is in your class constructors.
   - components
   - directives
